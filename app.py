@@ -45,40 +45,40 @@ def index():
     plt.hist(df['fico'], bins=25, alpha=0.45, color='yellow')
     plt.title("fico")
     plt.legend(['fico'])
-    plt.savefig('fico.png', dpi=100)
+    plt.savefig('graphs_and_images/fico.png', dpi=100)
 
     plt.hist(df['utilization'], bins=25, alpha=0.45, color='blue')
     plt.title("Utilization")
     plt.legend(['Utilization'])
-    plt.savefig('Utilization.png', dpi=100)
+    plt.savefig('graphs_and_images/Utilization.png', dpi=100)
     
     
     plt.hist(df['card_limit'], bins=25, alpha=0.45, color='black')
     plt.title("card_limit")
     plt.legend(['card_limit'])
-    plt.savefig('card_limit.png', dpi=100)
+    plt.savefig('graphs_and_images/card_limit.png', dpi=100)
     
     plt.hist(df['card_interest_rate'], bins=25, alpha=0.45, color='red')
     plt.title("card_interest_rate")
     plt.legend(['card_interest_rate'])
-    plt.savefig('card_interest_rate.png', dpi=100)
+    plt.savefig('graphs_and_images/card_interest_rate.png', dpi=100)
     
     plt.hist(df['monthly_salary'], bins=25, alpha=0.45, color='green')
     plt.title("monthly_salary")
     plt.legend(['monthly_salary'])
-    plt.savefig('monthly_salary.png', dpi=100)
+    plt.savefig('graphs_and_images/monthly_salary.png', dpi=100)
     
     plt.hist(df['model_target'], bins=25, alpha=0.45, color='red')
     plt.hist(df['model_target'], bins=25, alpha=0.45, color='blue')
     plt.title("model_target")
     plt.legend(['model_target'])
-    plt.savefig('model_target.png', dpi=100)
+    plt.savefig('graphs_and_images/odel_target.png', dpi=100)
 
     fig,ax = render_mpl_table(df.head(), header_columns=0, col_width=4.0)
-    fig.savefig("data_head.png")
+    fig.savefig("graphs_and_images/data_head.png")
     
     fig,ax = render_mpl_table(df.describe(), header_columns=0, col_width=4.0)
-    fig.savefig("statistical_info.png")
+    fig.savefig("graphs_and_images/statistical_info.png")
 
     
     return "Succesfully generated"
