@@ -10,6 +10,7 @@ import pdfkit
 from flask import send_file     
 from PIL import Image
 from fpdf import FPDF
+ 
 from PyPDF2 import PdfMerger, PdfReader
 
 from flask import Flask, flash, request, redirect, url_for
@@ -26,7 +27,16 @@ from werkzeug.datastructures import  FileStorage
     
 from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.metrics import confusion_matrix
+
+
+
+
+
+
 app = Flask(__name__,static_folder='/React_frontend/graphs_and_images',template_folder='/home/harsh/personal_project/new/Doc-Gen-Corridor/flask/templates')
+
+
+
 
 def render_mpl_table(data, col_width=3.0, row_height=0.625, font_size=14,
                      header_color='#40466e', row_colors=['#f1f1f2', 'w'], edge_color='w',
@@ -50,12 +60,14 @@ def render_mpl_table(data, col_width=3.0, row_height=0.625, font_size=14,
     return ax.get_figure(), ax
 
 
+
 UPLOAD_FOLDER = os.path.basename('/')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+
 @app.route('/')
 def hello_world():
-    return render_template('index.html')
+    return render_template('index_new.html')
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -70,11 +82,8 @@ def upload_file():
     plt.hist(df['fico'], bins=25, alpha=0.45, color='yellow')
     plt.title("fico")
     plt.legend(['fico'])
-    plt.savefig('fico.png', dpi=100)
-    image = Image.open("/home/harsh/personal_project/new/Doc-Gen-Corridor/flask/React_frontend/graphs_and_images/fico.png")
-    image = image.resize((400,200),Image.ANTIALIAS)
-    image.save(fp="/home/harsh/personal_project/new/Doc-Gen-Corridor/flask/React_frontend/graphs_and_images/fico.png")
-
+    
+    plt.savefig('fico.png', dpi=10)
 
 
     plt.hist(df['utilization'], bins=25, alpha=0.45, color='blue')
@@ -106,35 +115,38 @@ def upload_file():
 
     fig,ax = render_mpl_table(df.head(), header_columns=0, col_width=4.0)
     fig.savefig("React_frontend/graphs_and_images/data_head.png")
-    image = Image.open("/home/harsh/personal_project/new/Doc-Gen-Corridor/flask/React_frontend/graphs_and_images/data_head.png")
-    image = image.resize((500,500),Image.ANTIALIAS)
-    image.save(fp="/home/harsh/personal_project/new/Doc-Gen-Corridor/flask/React_frontend/graphs_and_images/data_head.png")
-
 
     fig,ax = render_mpl_table(df.describe(), header_columns=0, col_width=4.0)
     fig.savefig("React_frontend/graphs_and_images/statistical_info.png")
 
+ 
 
+ 
+ 
 
-    image_1 = Image.open('/home/harsh/personal_project/new/Doc-Gen-Corridor/flask/React_frontend/graphs_and_images/card_limit.png')
-    image_2 = Image.open('/home/harsh/personal_project/new/Doc-Gen-Corridor/flask/React_frontend/graphs_and_images/data_head.png')
+    image_1 = Image.open('/home/harsh/personal_project/new/Doc-Gen-Corridor/flask/React_frontend/graphs_and_images/card_limit.png') 
+    #image_2 = Image.open('/home/harsh/personal_project/new/Doc-Gen-Corridor/flask/React_frontend/graphs_and_images/data_head.png')
     image_3 = Image.open('/home/harsh/personal_project/new/Doc-Gen-Corridor/flask/React_frontend/graphs_and_images/fico.png')
     image_4 = Image.open('/home/harsh/personal_project/new/Doc-Gen-Corridor/flask/React_frontend/graphs_and_images/monthly_salary.png')
     image_5 = Image.open('/home/harsh/personal_project/new/Doc-Gen-Corridor/flask/React_frontend/graphs_and_images/odel_target.png')
-    image_6 = Image.open('/home/harsh/personal_project/new/Doc-Gen-Corridor/flask/React_frontend/graphs_and_images/statistical_info.png')
+    #image_6 = Image.open('/home/harsh/personal_project/new/Doc-Gen-Corridor/flask/React_frontend/graphs_and_images/statistical_info.png')
     image_7 = Image.open('/home/harsh/personal_project/new/Doc-Gen-Corridor/flask/React_frontend/graphs_and_images/tr_tn.png')
     image_8 = Image.open('/home/harsh/personal_project/new/Doc-Gen-Corridor/flask/React_frontend/graphs_and_images/Utilization.png')
+    image_9 = Image.open('/home/harsh/personal_project/new/Doc-Gen-Corridor/flask/React_frontend/graphs_and_images/confusion_matrix.png')
+    image_10 = Image.open('/home/harsh/personal_project/new/Doc-Gen-Corridor/flask/React_frontend/graphs_and_images/tr_tn.png')
 
     im_1 = image_1.convert('RGB')
-    im_2 = image_2.convert('RGB')
+    #im_2 = image_2.convert('RGB')
     im_3 = image_3.convert('RGB')
     im_4 = image_4.convert('RGB')
     im_5 = image_5.convert('RGB')
-    im_6 = image_6.convert('RGB')
+    #im_6 = image_6.convert('RGB')
     im_7 = image_7.convert('RGB')
     im_8 = image_8.convert('RGB')
+    im_9 = image_9.convert('RGB')
+    im_10 = image_10.convert('RGB')
 
-    image_list = [im_1,im_2,im_3,im_4,im_5,im_6,im_7,im_8]
+    image_list = [im_1,im_3,im_4,im_5,im_7,im_8,im_9,im_10]
     im_1.save('report.pdf', save_all=True, append_images=image_list)
     
 
@@ -200,12 +212,12 @@ def index():
     plt.legend(['model_target'])
     plt.savefig('React_frontend/graphs_and_images/odel_target.png', dpi=100)
 
-    fig,ax = render_mpl_table(df.head(), header_columns=0, col_width=4.0)
-    fig.savefig("React_frontend/graphs_and_images/data_head.png")
+    #fig,ax = render_mpl_table(df.head(), header_columns=0, col_width=4.0)
+    #fig.savefig("React_frontend/graphs_and_images/data_head.png")
     
-    fig,ax = render_mpl_table(df.describe(), header_columns=0, col_width=4.0)
-    fig.savefig("React_frontend/graphs_and_images/statistical_info.png")
-
+    #fig,ax = render_mpl_table(df.describe(), header_columns=0, col_width=4.0)
+    #fig.savefig("React_frontend/graphs_and_images/statistical_info.png")
+   
     
     return "Succesfully generated"
  

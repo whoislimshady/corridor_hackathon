@@ -1,0 +1,140 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Python and Flask</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  </head>
+
+
+<style>
+
+  *{
+    font-family:'JetBrains Mono'
+  }
+
+  body{
+    background-image: linear-gradient(
+  45deg,
+  hsl(3deg 90% 67%) 0%,
+  hsl(355deg 98% 71%) 10%,
+  hsl(348deg 100% 72%) 20%,
+  hsl(341deg 100% 74%) 30%,
+  hsl(334deg 100% 76%) 40%,
+  hsl(325deg 91% 78%) 50%,
+  hsl(333deg 87% 76%) 60%,
+  hsl(340deg 80% 74%) 70%,
+  hsl(347deg 72% 71%) 80%,
+  hsl(353deg 63% 69%) 90%,
+  hsl(0deg 54% 66%) 100%
+);
+min-height: 100vh;
+  }
+
+  .center{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    animation: slow-reveal 0.5s ease-in-out
+  }
+
+  .input-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    color:white;
+    font-weight: bold;
+    /* border:1px solid lightgray;
+    border-radius: 5px; */
+    /* width:fit-content; */
+    /* padding: 50%; */
+  }
+
+  /* .input-container--text{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+  } */
+
+  input[type="text"], input[type="date"] {
+    padding:10px;
+    border:2px solid red;
+    outline:none;
+    border-radius:5px;
+  }
+
+  input[type="text"]:focus{
+    border:2px solid pink;
+  }
+  input[type="submit"]{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius:10px;
+    transition:0.2s ease-in;
+  }
+
+  @keyframes slow-reveal {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+  input[type="submit"]:hover{
+    background-color:red;
+    text-decoration: underline;
+  }
+
+
+
+  footer{
+    position:absolute;
+    bottom:2%;
+    left:50%;
+    transform: translate(-50%);
+    color: white;
+  }
+</style>
+
+
+
+<body>
+<header class="navbar">
+  <h2 class="center">Model Document Generator - Corridor Platforms Hackathon</h2>
+  <form action="/upload" method="post" enctype="multipart/form-data" >
+    <span class="btn btn-default btn-file">
+      Browse <input type="file" name="image">
+    </span>
+
+  <input type="submit" value="Upload File" class="btn btn-primary">
+</form>
+
+
+  <footer>
+    <center>
+      <h3>Developed by Harsh and Mayank for Corridor Platforms</h3>
+    </center>
+  </footer>
+</header>
+
+</body>
+</html>
